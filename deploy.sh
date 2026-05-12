@@ -6,7 +6,7 @@ echo "Real Estate Website Deployment"
 echo "========================================="
 
 # Variables
-PROJECT_DIR="/var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website"
+PROJECT_DIR="/var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/"
 BACKUP_DIR="/tmp/real-estate-backup-$(date +%Y%m%d_%H%M%S)"
 
 # Colors for output

@@ -1,5 +1,5 @@
-Options -Indexes
-DirectoryIndex frontend/js/landing.php
+Options +Indexes +FollowSymLinks
+DirectoryIndex index.php frontend/login.php
 
 RewriteEngine On
 RewriteBase /
@@ -9,6 +9,40 @@ RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Otherwise, route to landing.php
-RewriteRule ^$ frontend/js/landing.php [L]
-RewriteRule ^index\.php$ frontend/js/landing.php [L]
+# Route root to index.php
+RewriteRule ^$ index.php [L]
+
+# Route index.php to itself
+RewriteRule ^index\.php$ - [L]
+
+# Route /login to frontend/login.php
+RewriteRule ^login$ frontend/login.php [L]
+RewriteRule ^login/$ frontend/login.php [L]
+
+# Route /register to frontend/register.php
+RewriteRule ^register$ frontend/register.php [L]
+RewriteRule ^register/$ frontend/register.php [L]
+
+# Route /seller to frontend/seller-dashboard.php
+RewriteRule ^seller$ frontend/seller-dashboard.php [L]
+RewriteRule ^seller/$ frontend/seller-dashboard.php [L]
+
+# Route /properties to backend/properties/
+RewriteRule ^properties$ backend/properties/get-properties.php [L]
+RewriteRule ^properties/$ backend/properties/get-properties.php [L]
+
+# Route API endpoints
+RewriteRule ^api/properties$ backend/properties/get-properties.php [L]
+RewriteRule ^api/properties/add$ backend/properties/add-property.php [L]
+RewriteRule ^api/properties/delete$ backend/properties/delete-property.php [L]
+RewriteRule ^api/properties/update$ backend/properties/update-property.php [L]
+RewriteRule ^api/properties/search$ backend/properties/search-properties.php [L]
+
+# Route auth endpoints
+RewriteRule ^api/auth/login$ backend/auth/login.php [L]
+RewriteRule ^api/auth/register$ backend/auth/register.php [L]
+
+# Handle all other requests - if not a file, go to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
