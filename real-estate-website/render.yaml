@@ -1,17 +1,11 @@
 services:
   - type: web
     name: real-estate-website
-    env: php
+    dockerfilePath: ./Dockerfile
     plan: free
-    buildCommand: |
-      # Install any PHP extensions if needed
-      apt-get update
-      apt-get install -y libpq-dev
-      docker-php-ext-install pdo_mysql
-    startCommand: "php -S 0.0.0.0:8080 -t ."
     envVars:
-      - key: PHP_VERSION
-        value: "8.2"
+      - key: PORT
+        value: "8080"
       - key: DB_HOST
         value: "your-database-host"  # Replace with your Render MySQL database host
       - key: DB_NAME
