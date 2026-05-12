@@ -1,7 +1,7 @@
 services:
   - type: web
     name: real-estate-website
-    runtime: php
+    env: php
     plan: free
     buildCommand: |
       # Install any PHP extensions if needed
