@@ -22,22 +22,22 @@ RUN a2enmod rewrite
 RUN a2enmod headers
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT
 
 # Copy application files
-COPY . /var/www/html/
+COPY . /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT
 
 # IMPORTANT: Fix permissions for Apache
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html \
-    && chmod -R 775 /var/www/html/frontend \
-    && find /var/www/html -type f -name "*.php" -exec chmod 644 {} \;
+RUN chown -R www-data:www-data /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT \
+    && chmod -R 755 /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT \
+    && chmod -R 775 /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/frontend \
+    && find /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT -type f -name "*.php" -exec chmod 644 {} \;
 
 # Ensure index.php exists and is readable
-RUN test -f /var/www/html/index.php && echo "index.php exists" || echo "ERROR: index.php missing"
+RUN test -f /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/index.php && echo "index.php exists" || echo "ERROR: index.php missing"
 
 # Configure Apache to allow .htaccess
-RUN echo "<Directory /var/www/html/>\n\
+RUN echo "<Directory /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/>\n\
     Options Indexes FollowSymLinks\n\
     AllowOverride All\n\
     Require all granted\n\
