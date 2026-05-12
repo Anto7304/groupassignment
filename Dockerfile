@@ -1,50 +1,26 @@
 FROM php:8.2-apache
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    mariadb-client
+# Install mysqli extension
+RUN docker-php-ext-install mysqli pdo_mysql
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-# Enable Apache modules
+# Enable rewrite module
 RUN a2enmod rewrite
-RUN a2enmod headers
 
-# Set working directory
-WORKDIR /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT
+# Set permissions and create a test file
+RUN rm -rf /var/www/html/* && \
+    echo '<?php echo "<h1>Working!</h1><p>Server is running correctly.</p>"; ?>' > /var/www/html/index.php && \
+    chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
 
-# Copy application files
-COPY . /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT
+# Copy your files (will overwrite the test file)
+COPY . /var/www/html/
 
-# IMPORTANT: Fix permissions for Apache
-RUN chown -R www-data:www-data /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT \
-    && chmod -R 755 /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT \
-    && chmod -R 775 /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/frontend \
-    && find /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT -type f -name "*.php" -exec chmod 644 {} \;
+# Fix permissions for all files
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html && \
+    chmod 644 /var/www/html/index.php 2>/dev/null || true && \
+    find /var/www/html -type d -exec chmod 755 {} \; && \
+    find /var/www/html -type f -name "*.php" -exec chmod 644 {} \;
 
-# Ensure index.php exists and is readable
-RUN test -f /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/index.php && echo "index.php exists" || echo "ERROR: index.php missing"
-
-# Configure Apache to allow .htaccess
-RUN echo "<Directory /var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/>\n\
-    Options Indexes FollowSymLinks\n\
-    AllowOverride All\n\
-    Require all granted\n\
-</Directory>" >> /etc/apache2/apache2.conf
-
-# Expose port 80
 EXPOSE 80
-
-# Start Apache
 CMD ["apache2-foreground"]
