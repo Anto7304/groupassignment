@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: real-estate-website
+    runtime: php
+    plan: free
+    buildCommand: |
+      # Install any PHP extensions if needed
+      apt-get update
+      apt-get install -y libpq-dev
+      docker-php-ext-install pdo_mysql
+    startCommand: "php -S 0.0.0.0:8080 -t ."
+    envVars:
+      - key: PHP_VERSION
+        value: "8.2"

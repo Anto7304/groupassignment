@@ -1,28 +1,14 @@
-# .htaccess - Security and configuration
 Options -Indexes
-Options +FollowSymLinks
+DirectoryIndex frontend/js/landing.php
 
-# Protect sensitive directories
-RedirectMatch 403 ^/backend/auth/.*\.php$
-RedirectMatch 403 ^/database/.*\.sql$
-
-# Disable directory browsing
-Options All -Indexes
-
-# Protect .htaccess file
-<Files .htaccess>
-    Order allow,deny
-    Deny from all
-</Files>
-
-# Protect uploads from script execution
-<FilesMatch "\.(php|php3|php4|php5|phtml|inc)$">
-    Deny from all
-</FilesMatch>
-
-# Enable URL rewriting
 RewriteEngine On
-RewriteBase /BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/
+RewriteBase /
 
-# Redirect to landing page
+# If the request is for a real file or directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Otherwise, route to landing.php
 RewriteRule ^$ frontend/js/landing.php [L]
+RewriteRule ^index\.php$ frontend/js/landing.php [L]
