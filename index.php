@@ -16,16 +16,14 @@
                 <h2>🏠 RealEstate</h2>
             </div>
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-            <li><a href="/properties.php">Properties</a></li>
-            <li><a href="/about.php">About</a></li>
-            <li><a href="/contact.php">Contact</a></li>
-            <li><a href="/frontend/login.php">Login</a></li>
-            <li><a href="/frontend/register.php">Register</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-buttons" id="navButtons">
-                <a href="login.php" class="btn-login">Login</a>
-                <a href="register.php" class="btn-register">Register</a>
+                <a href="./frontend/login.php" class="btn-login">Login</a>
+                <a href="./frontend/register.php" class="btn-register">Register</a>
             </div>
             <div class="user-info" id="userInfo" style="display: none;">
                 <span id="userName"></span>
