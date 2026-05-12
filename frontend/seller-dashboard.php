@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Dashboard - Real Estate</title>
-    <link rel="stylesheet" href="../css/seller.css">
+    <link rel="stylesheet" href="/frontend/css/seller.css">
 </head>
 <body>
     <div class="dashboard-container">
