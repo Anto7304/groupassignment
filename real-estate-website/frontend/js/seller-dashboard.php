@@ -91,7 +91,7 @@
         // Check authentication
         async function checkAuth() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/auth/check-session.php');
+                const response = await fetch('/backend/auth/check-session.php');
                 const data = await response.json();
                 
                 if (!data.logged_in) {

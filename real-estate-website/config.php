@@ -3,14 +3,14 @@
 session_start();
 
 define("SITE_NAME", "Real Estate Website");
-define("SITE_URL", "http://" . $_SERVER["HTTP_HOST"] . "/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website");
+define("SITE_URL", "https://" . $_SERVER["HTTP_HOST"]);
 define("BASE_PATH", dirname(__FILE__) . "/");
 
-// Database
-define("DB_HOST", "localhost");
-define("DB_NAME", "real_estate_db");
-define("DB_USER", "root");
-define("DB_PASS", "");
+// Database - Use environment variables for Render
+define("DB_HOST", getenv("DB_HOST") ?: "localhost");
+define("DB_NAME", getenv("DB_NAME") ?: "real_estate_db");
+define("DB_USER", getenv("DB_USER") ?: "root");
+define("DB_PASS", getenv("DB_PASS") ?: "");
 
 // Upload settings
 define("UPLOAD_DIR", BASE_PATH . "uploads/");

@@ -37,7 +37,7 @@
             const password = document.getElementById('password').value;
             
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/auth/login.php', {
+                const response = await fetch('/backend/auth/login.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

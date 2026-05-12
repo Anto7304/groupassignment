@@ -100,7 +100,7 @@
         // Check login status
         async function checkLoginStatus() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/auth/check-session.php');
+                const response = await fetch('/backend/auth/check-session.php');
                 const data = await response.json();
                 
                 if (data.logged_in) {
@@ -119,7 +119,7 @@
         // Load properties
         async function loadProperties() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/get-properties.php?status=available');
+                const response = await fetch('/backend/properties/get-properties.php?status=available');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -143,7 +143,7 @@
                 <div class="property-card">
                     <div class="property-image">
                         ${property.image_url ? 
-                            `<img src="http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/${property.image_url}" alt="${property.title}">` : 
+                            `<img src="/${property.image_url}" alt="${property.title}">` : 
                             '<div class="no-image">No Image</div>'}
                     </div>
                     <div class="property-details">
@@ -165,7 +165,7 @@
         // Show seller details in modal
         async function showSellerDetails(propertyId) {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/get-properties.php?status=available');
+                const response = await fetch('/backend/properties/get-properties.php?status=available');
                 const data = await response.json();
                 const property = data.properties.find(p => p.id === propertyId);
                 
@@ -201,7 +201,7 @@
         async function searchProperties() {
             const query = document.getElementById('searchInput').value;
             try {
-                const response = await fetch(`http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/search-properties.php?query=${encodeURIComponent(query)}`);
+                const response = await fetch(`/backend/properties/search-properties.php?query=${encodeURIComponent(query)}`);
                 const data = await response.json();
                 if (data.success) {
                     displayProperties(data.properties);
@@ -216,7 +216,7 @@
             const price = document.getElementById('priceFilter').value;
             const bedrooms = document.getElementById('bedroomsFilter').value;
             
-            let url = 'http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/search-properties.php?';
+            let url = '/backend/properties/search-properties.php?';
             
             if (price) {
                 const [min, max] = price.split('-');
@@ -240,7 +240,7 @@
         // Logout
         async function logout() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/auth/logout.php', {
+                const response = await fetch('/backend/auth/logout.php', {
                     method: 'POST'
                 });
                 const data = await response.json();

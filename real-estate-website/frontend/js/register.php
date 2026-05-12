@@ -64,7 +64,7 @@
             }
             
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/auth/reg.php', {
+                const response = await fetch('/backend/auth/reg.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

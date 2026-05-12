@@ -12,3 +12,11 @@ services:
     envVars:
       - key: PHP_VERSION
         value: "8.2"
+      - key: DB_HOST
+        value: "your-database-host"  # Replace with your Render MySQL database host
+      - key: DB_NAME
+        value: "real_estate_db"
+      - key: DB_USER
+        value: "your-db-user"  # Replace with your Render MySQL database user
+      - key: DB_PASS
+        value: "your-db-password"  # Replace with your Render MySQL database password
