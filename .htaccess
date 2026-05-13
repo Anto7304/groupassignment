@@ -1,16 +1,9 @@
-# .htaccess - Minimal configuration, no redirects
+# Simplest working .htaccess
 DirectoryIndex index.php
 Require all granted
 
-# Turn off rewrite engine completely
+# Disable all rewriting
 RewriteEngine Off
+RewriteRule . - [L]
 
-# Allow all files to be accessed directly
-<Files "*">
-    Require all granted
-</Files>
-
-# Set correct MIME types for CSS and JS
-<FilesMatch "\.(css|js)$">
-    Header set Content-Type text/css
-</FilesMatch>
+# No custom headers (they require mod_headers)
