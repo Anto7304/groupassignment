@@ -1,11 +1,11 @@
 <?php
-// backend/properties/add-property.php - COMPLETE FIX
+// backend/properties/add-property.php - FIXED for Render
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 header('Content-Type: application/json');
 session_start();
-require_once '../auth/db.php';
+require_once __DIR__ . '/../auth/db.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['success' => false, 'message' => 'Please login first']);
@@ -34,7 +34,7 @@ if (empty($title) || empty($description) || $price <= 0 || empty($location)) {
     exit;
 }
 
-// Handle image upload
+// Handle image upload - FIXED PATH
 $image_url = '';
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp'];
@@ -45,9 +45,10 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         exit;
     }
     
-    // Use correct absolute path
-    $upload_dir = '/var/www/html/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/uploads/';
+    // DYNAMIC upload directory - works on any server
+    $upload_dir = __DIR__ . '/../../uploads/';
     
+    // Create directory if it doesn't exist
     if (!file_exists($upload_dir)) {
         mkdir($upload_dir, 0777, true);
     }
@@ -56,9 +57,9 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $target = $upload_dir . $filename;
     
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $image_url = 'uploads/' . $filename;
+        $image_url = '/uploads/' . $filename;  // Web-accessible path
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to save image file']);
+        echo json_encode(['success' => false, 'message' => 'Failed to save image file. Check directory permissions.']);
         exit;
     }
 }

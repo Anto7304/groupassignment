@@ -130,7 +130,7 @@
                 <div class="property-card">
                     <div class="property-image">
                         ${property.image_url ? 
-                            `<img src="/backend/properties/get-properties.php/${property.image_url}" alt="${property.title}">` : 
+                            `<img src="${property.image_url}" alt="${property.title}">` : 
                             '<div class="no-image">No Image</div>'}
                     </div>
                     <div class="property-details">

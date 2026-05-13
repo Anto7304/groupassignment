@@ -10,8 +10,11 @@ RUN a2enmod rewrite
 # Copy files
 COPY . /var/www/html/
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html && \
+# Create uploads directory and set permissions
+RUN mkdir -p /var/www/html/uploads && \
+    chown -R www-data:www-data /var/www/html/uploads && \
+    chmod -R 755 /var/www/html/uploads && \
+    chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
 
 # Configure Apache
