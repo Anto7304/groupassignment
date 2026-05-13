@@ -96,11 +96,11 @@
                 
                 if (!data.logged_in) {
                     // Use absolute path instead of relative
-                    window.location.href = '/frontend/js/login.php';
+                    window.location.href = '/frontend/login.php';
                 }
             } catch (error) {
                 console.error('Error checking auth:', error);
-                window.location.href = '/frontend/js/login.php';
+                window.location.href = '/frontend/login.php';
             }
         }
         // Load seller's properties
@@ -285,7 +285,7 @@
                 const data = await response.json();
                 if (data.success) {
                     // Use absolute paths for redirects
-                    window.location.href = '/frontend/js/login.php';;
+                    window.location.href = '/frontend/login.php';;
                 }
             } catch (error) {
                 console.error('Error logging out:', error);

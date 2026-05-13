@@ -1,9 +1,7 @@
-# Simplest working .htaccess
 DirectoryIndex index.php
 Require all granted
-
-# Disable all rewriting
 RewriteEngine Off
-RewriteRule . - [L]
 
-# No custom headers (they require mod_headers)
+<Files "*">
+    Require all granted
+</Files>
