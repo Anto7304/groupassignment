@@ -1,8 +1,8 @@
 <?php
-// backend/auth/reg.php
+// backend/auth/reg.php - PostgreSQL version
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // Don't display errors in output
-ini_set('log_errors', 1); // Log errors instead
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -70,10 +70,11 @@ try {
         exit();
     }
     
-    // Hash password and insert user
+    // Hash password and insert user - FIXED: removed NOW() for PostgreSQL
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     
-    $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password, created_at) VALUES (?, ?, ?, ?, NOW())");
+    // PostgreSQL will automatically use DEFAULT CURRENT_TIMESTAMP for created_at
+    $stmt = $pdo->prepare("INSERT INTO users (full_name, email, phone, password) VALUES (?, ?, ?, ?)");
     
     if ($stmt->execute([$full_name, $email, $phone, $hashed_password])) {
         // Start session and log user in
