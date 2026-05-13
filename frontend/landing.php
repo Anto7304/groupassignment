@@ -22,12 +22,12 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-buttons" id="navButtons">
-                <a href="/frontend/js/login.php" class="btn-login">Login</a>
-                <a href="/frontend/js/register.php" class="btn-register">Register</a>
+                <a href="/frontend/login.php" class="btn-login">Login</a>
+                <a href="/frontend/register.php" class="btn-register">Register</a>
             </div>
             <div class="user-info" id="userInfo" style="display: none;">
                 <span id="userName"></span>
-                <a href="/frontend/js/seller-dashboard.php" class="btn-dashboard">Dashboard</a>
+                <a href="/frontend/seller-dashboard.php" class="btn-dashboard">Dashboard</a>
                 <button onclick="logout()" class="btn-logout">Logout</button>
             </div>
         </div>

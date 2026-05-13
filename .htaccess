@@ -1,21 +1,16 @@
-Options +Indexes +FollowSymLinks
+# .htaccess - Minimal configuration, no redirects
 DirectoryIndex index.php
 Require all granted
 
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-    
-    # Allow direct access to files
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
-    
-    # Route everything to index.php
-    RewriteRule ^ index.php [L]
-</IfModule>
+# Turn off rewrite engine completely
+RewriteEngine Off
 
-# Allow access to all files
+# Allow all files to be accessed directly
 <Files "*">
     Require all granted
 </Files>
+
+# Set correct MIME types for CSS and JS
+<FilesMatch "\.(css|js)$">
+    Header set Content-Type text/css
+</FilesMatch>

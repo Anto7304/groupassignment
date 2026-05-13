@@ -1,5 +1,6 @@
 <?php
-// Simple router - redirect to landing page
-header('Location: /frontend/js/landing.php');
+// index.php - Serve landing page directly (no redirect)
+// Instead of redirecting, include the landing page
+include __DIR__ . '/frontend/js/landing.php';
 exit;
 ?>

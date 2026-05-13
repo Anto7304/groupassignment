@@ -75,7 +75,7 @@
                 const data = await response.json();
                 
                 if (data.success) {
-                    window.location.href = 'landing.php';
+                    window.location.href = '/frontend/landing.php';
                 } else {
                     document.getElementById('message').textContent = data.message;
                     document.getElementById('message').className = 'message error';

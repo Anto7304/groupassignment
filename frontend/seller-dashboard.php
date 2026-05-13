@@ -95,18 +95,18 @@
                 const data = await response.json();
                 
                 if (!data.logged_in) {
-                    window.location.href = 'login.php';
+                    // Use absolute path instead of relative
+                    window.location.href = '/frontend/js/login.php';
                 }
             } catch (error) {
                 console.error('Error checking auth:', error);
-                window.location.href = 'login.php';
+                window.location.href = '/frontend/js/login.php';
             }
         }
-        
         // Load seller's properties
         async function loadMyProperties() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/get-properties.php');
+                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/get-properties.php');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -130,7 +130,7 @@
                 <div class="property-card">
                     <div class="property-image">
                         ${property.image_url ? 
-                            `<img src="http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/${property.image_url}" alt="${property.title}">` : 
+                            `<img src="http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/${property.image_url}" alt="${property.title}">` : 
                             '<div class="no-image">No Image</div>'}
                     </div>
                     <div class="property-details">
@@ -200,7 +200,7 @@
             }
             
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/add-property.php', {
+                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/add-property.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -234,7 +234,7 @@
             formData.append('status', status);
             
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/update-property.php', {
+                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/update-property.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -257,7 +257,7 @@
         async function deleteProperty(propertyId) {
             if (confirm('Are you sure you want to delete this property?')) {
                 try {
-                    const response = await fetch(`http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/properties/delete-property.php?id=${propertyId}`, {
+                    const response = await fetch(`http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/delete-property.php?id=${propertyId}`, {
                         method: 'DELETE'
                     });
                     
@@ -279,12 +279,13 @@
         // Logout
         async function logout() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/real-estate-website/backend/auth/logout.php', {
+                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/auth/logout.php', {
                     method: 'POST'
                 });
                 const data = await response.json();
                 if (data.success) {
-                    window.location.href = 'landing.php';
+                    // Use absolute paths for redirects
+                    window.location.href = '/frontend/js/login.php';;
                 }
             } catch (error) {
                 console.error('Error logging out:', error);
