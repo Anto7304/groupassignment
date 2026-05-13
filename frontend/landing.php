@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate - Find Your Dream Property</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/frontend/css/style.css">
 </head>
 <body>
     <nav class="navbar">
@@ -22,8 +22,8 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-buttons" id="navButtons">
-                <a href="/fronted/login.php" class="btn-login">Login</a>
-                <a href="/fronted/register.php" class="btn-register">Register</a>
+                <a href="/frontend/login.php" class="btn-login">Login</a>
+                <a href="/frontend/register.php" class="btn-register">Register</a>
             </div>
             <div class="user-info" id="userInfo" style="display: none;">
                 <span id="userName"></span>

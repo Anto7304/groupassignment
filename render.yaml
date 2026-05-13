@@ -10,11 +10,5 @@ services:
     envVars:
       - key: RENDER
         value: "true"
-      - key: DB_HOST
-        value: "sql207.infinityfree.com"
-      - key: DB_NAME
-        value: "if0_41902336_realestate_db"
-      - key: DB_USER
-        value: "if0_41902336"
-      - key: DB_PASS
-        value: "N7Z2dlsvmbFAIsR4hxengw1wjQwgXj06"  # ← IMPORTANT: Change this!
+      - key: DATABASE_URL
+        value: "postgresql://realestate_db_unx3_user:N7Z2dlsvmbFAIsR4hxengw1wjQwgXj06@dpg-d81nju83kofs73cu4b60-a.oregon-postgres.render.com/realestate_db_unx3"

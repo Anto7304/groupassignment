@@ -106,7 +106,7 @@
         // Load seller's properties
         async function loadMyProperties() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/get-properties.php');
+                const response = await fetch('/backend/properties/get-properties.php');
                 const data = await response.json();
                 
                 if (data.success) {
@@ -130,7 +130,7 @@
                 <div class="property-card">
                     <div class="property-image">
                         ${property.image_url ? 
-                            `<img src="http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/${property.image_url}" alt="${property.title}">` : 
+                            `<img src="/backend/properties/get-properties.php/${property.image_url}" alt="${property.title}">` : 
                             '<div class="no-image">No Image</div>'}
                     </div>
                     <div class="property-details">
@@ -200,7 +200,7 @@
             }
             
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/add-property.php', {
+                const response = await fetch('/backend/properties/add-property.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -234,7 +234,7 @@
             formData.append('status', status);
             
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/update-property.php', {
+                const response = await fetch('/backend/properties/update-property.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -257,7 +257,7 @@
         async function deleteProperty(propertyId) {
             if (confirm('Are you sure you want to delete this property?')) {
                 try {
-                    const response = await fetch(`http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/properties/delete-property.php?id=${propertyId}`, {
+                    const response = await fetch(`/backend/properties/delete-property.php?id=${propertyId}`, {
                         method: 'DELETE'
                     });
                     
@@ -279,7 +279,7 @@
         // Logout
         async function logout() {
             try {
-                const response = await fetch('http://localhost/BIT-224-WEBAPPLICATION-ASSINMENT/backend/auth/logout.php', {
+                const response = await fetch('/backend/auth/logout.php', {
                     method: 'POST'
                 });
                 const data = await response.json();
