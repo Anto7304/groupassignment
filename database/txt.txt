@@ -1,2 +1,0 @@
-MySQL DB Name	            MySQL User Name  ▾	MySQL Password	             MySQL Host Name	PHPMyAdmin
-if0_41902336_realestate_db	if0_41902336	    (Your vPanel Password)	sql207.infinityfree.com	
