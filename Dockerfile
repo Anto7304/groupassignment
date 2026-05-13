@@ -1,7 +1,10 @@
 FROM php:8.2-apache
 
-# Install extensions
-RUN docker-php-ext-install pdo_mysql mysqli
+# Install PostgreSQL driver
+RUN apt-get update && apt-get install -y libpq-dev && \
+    docker-php-ext-install pdo_pgsql pgsql
+
+# Enable Apache modules
 RUN a2enmod rewrite
 
 # Copy files
