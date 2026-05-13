@@ -18,8 +18,4 @@ try {
 } catch(PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 ?>
