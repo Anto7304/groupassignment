@@ -8,4 +8,4 @@ if (!isset($pdo)) {
     echo json_encode($response);
     exit();
 }
-?>Desktop/real-estate-website
+?>
