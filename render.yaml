@@ -1,22 +1,20 @@
 services:
-  # Web service for your PHP application
   - type: web
-    name: bit-224-real-estate
+    name: real-estate-website
     runtime: docker
-    repo: https://github.com/Anto7304/groupassignment.git # Replace with your repo URL
+    repo: https://github.com/Anto7304/groupassignment
     branch: main
     region: oregon
     plan: free
-    rootDir: .
     dockerfilePath: ./Dockerfile
     envVars:
+      - key: RENDER
+        value: "true"
       - key: DB_HOST
-        value: sql207.infinityfree.com
+        value: "sql207.infinityfree.com"
       - key: DB_NAME
-        value: if0_41902336_realestate_dbs
+        value: "if0_41902336_realestate_db"
       - key: DB_USER
-        value: if0_41902336
+        value: "if0_41902336"
       - key: DB_PASS
-        value: N7Z2dlsvmbFAIsR4hxengw1wjQwgXj06  # Set this in Render dashboard
-      - key: DB_PORT
-        value: "3306"
+        value: "N7Z2dlsvmbFAIsR4hxengw1wjQwgXj06"  # ← IMPORTANT: Change this!
