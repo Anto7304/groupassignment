@@ -2,9 +2,10 @@
 // backend/auth/db.php
 require_once __DIR__ . '/../../config.php';
 
-// $pdo is already defined in config.php
-// This file just ensures the connection exists
+// Check if PDO connection exists
 if (!isset($pdo)) {
-    die("Database connection not established");
+    $response = ['success' => false, 'message' => 'Database connection not established'];
+    echo json_encode($response);
+    exit();
 }
 ?>
