@@ -23,7 +23,7 @@
             </ul>
             <div class="nav-buttons" id="navButtons">
                 <a href="/frontend/login.php" class="btn-login">Login</a>
-                <a href="/register.php" class="btn-register">Register</a>
+                <a href="./register.php" class="btn-register">Register</a>
             </div>
             <div class="user-info" id="userInfo" style="display: none;">
                 <span id="userName"></span>
