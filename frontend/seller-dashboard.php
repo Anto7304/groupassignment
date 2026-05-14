@@ -27,7 +27,7 @@
                             <input type="text" id="title" name="title" required>
                         </div>
                         <div class="form-group">
-                            <label for="price">Price ($)</label>
+                            <label for="price">Price ksh</label>
                             <input type="number" id="price" name="price" required>
                         </div>
                     </div>
