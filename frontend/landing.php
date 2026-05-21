@@ -93,7 +93,7 @@
 
     <script>
         const API_BASE = '';
-
+        //checking if user is login
         async function checkLoginStatus() {
             try {
                 const response = await fetch('/backend/auth/check-session.php');
@@ -109,6 +109,7 @@
             }
         }
 
+        //function for loading property
         async function loadProperties() {
             try {
                 const response = await fetch('/backend/properties/get-properties.php');
@@ -122,7 +123,7 @@
                 document.getElementById('propertiesList').innerHTML = '<p class="no-properties">Unable to load properties.</p>';
             }
         }
-
+//displaying property function
         function displayProperties(properties) {
         const container = document.getElementById('propertiesList');
         
@@ -185,6 +186,8 @@
                 }
             }
         }
+
+        //searching function
         async function searchProperties() {
             const query = document.getElementById('searchInput').value;
             try {
@@ -196,6 +199,7 @@
             }
         }
 
+        //filtering function
         async function filterProperties() {
             const price = document.getElementById('priceFilter').value;
             const bedrooms = document.getElementById('bedroomsFilter').value;
@@ -213,6 +217,7 @@
             }
         }
 
+        //logout function
         async function logout() {
             try {
                 await fetch('/backend/auth/logout.php', { method: 'POST' });
@@ -222,6 +227,7 @@
             }
         }
 
+        //formatting function to us
         function formatPrice(price) {
             return new Intl.NumberFormat('en-US').format(price);
         }

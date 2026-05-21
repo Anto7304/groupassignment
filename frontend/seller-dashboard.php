@@ -156,7 +156,7 @@
             `).join('');
         }
         
-        // ✅ IMAGE VALIDATION FUNCTION
+        // IMAGE VALIDATION FUNCTION
         function validateImage(file) {
             const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
             const maxSize = 20 * 1024 * 1024; // 5MB
@@ -174,7 +174,7 @@
             return true;
         }
 
-        // ✅ CORRECTED FORM SUBMISSION WITH VALIDATION
+        //  FORM SUBMISSION WITH VALIDATION
         document.getElementById('addPropertyForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
