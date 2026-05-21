@@ -1,5 +1,5 @@
 <?php
-// frontend/js/landing.php
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,10 +51,10 @@
                 <div class="filters">
                     <select id="priceFilter" onchange="filterProperties()">
                         <option value="">All Prices</option>
-                        <option value="0-100000">Under $100,000</option>
-                        <option value="100000-300000">$100,000 - $300,000</option>
-                        <option value="300000-500000">$300,000 - $500,000</option>
-                        <option value="500000-1000000">$500,000 - $1,000,000</option>
+                        <option value="0-100000">Under 100,000</option>
+                        <option value="100000-300000">100,000 - 300,000</option>
+                        <option value="300000-500000">300,000 - 500,000</option>
+                        <option value="500000-1000000">500,000 - 1,000,000</option>
                     </select>
                     <select id="bedroomsFilter" onchange="filterProperties()">
                         <option value="">Any Bedrooms</option>
@@ -78,7 +78,7 @@
         <section id="contact" class="contact-section">
             <div class="container">
                 <h2>Contact Us</h2>
-                <p>Email: info@realestate.com | Phone: +1 (555) 123-4567</p>
+                <p>Email: info@realestate.com | Phone: +254717 251 691</p>
             </div>
         </section>
     </main>
@@ -124,35 +124,67 @@
         }
 
         function displayProperties(properties) {
-            const container = document.getElementById('propertiesList');
-            
-            if (!properties || properties.length === 0) {
-                container.innerHTML = '<p class="no-properties">No properties available at the moment.</p>';
-                return;
-            }
-            
-            container.innerHTML = properties.map(property => `
-                <div class="property-card">
-                    <div class="property-image">
-                        ${property.image_url ? 
-                            `<img src="${property.image_url}" alt="${property.title}">` : 
-                            '<div class="no-image">No Image</div>'}
-                    </div>
-                    <div class="property-details">
-                        <h3>${escapeHtml(property.title)}</h3>
-                        <p class="price">$${formatPrice(property.price)}</p>
-                        <p class="location">📍 ${escapeHtml(property.location)}</p>
-                        <div class="features">
-                            <span>🛏️ ${property.bedrooms || 0} beds</span>
-                            <span>🚽 ${property.bathrooms || 0} baths</span>
-                            <span>📐 ${property.area_size || 0} sq ft</span>
-                        </div>
-                        <button onclick="showSellerDetails(${property.id})" class="btn-contact">Contact Seller</button>
-                    </div>
+        const container = document.getElementById('propertiesList');
+        
+        if (!properties || properties.length === 0) {
+            container.innerHTML = '<p class="no-properties">No properties available at the moment.</p>';
+            return;
+        }
+        
+        container.innerHTML = properties.map(property => `
+            <div class="property-card">
+                <div class="property-image">
+                    ${property.image_url ? 
+                        `<img src="${property.image_url}" alt="${property.title}">` : 
+                        '<div class="no-image">No Image</div>'}
                 </div>
-            `).join('');
+                <div class="property-details">
+                    <h3>${escapeHtml(property.title)}</h3>
+                    <p class="price">$${formatPrice(property.price)}</p>
+                    <p class="location">📍 ${escapeHtml(property.location)}</p>
+                    <div class="features">
+                        <span>🛏️ ${property.bedrooms || 0} beds</span>
+                        <span>🚽 ${property.bathrooms || 0} baths</span>
+                        <span>📐 ${property.area_size || 0} sq ft</span>
+                    </div>
+                    <button onclick='showSellerDetails(${JSON.stringify(property)})' class="btn-contact">Contact Seller</button>
+                </div>
+            </div>
+        `).join('');
         }
 
+    // Then update showSellerDetails to accept the property object directly
+        function showSellerDetails(property) {
+            const modal = document.getElementById('sellerModal');
+            const sellerDetails = document.getElementById('sellerDetails');
+            
+            sellerDetails.innerHTML = `
+                <div class="seller-info">
+                    <p><strong>Seller Name:</strong> ${escapeHtml(property.seller_name)}</p>
+                    <p><strong>Email:</strong> ${escapeHtml(property.seller_email)}</p>
+                    <p><strong>Phone:</strong> ${escapeHtml(property.seller_phone)}</p>
+                    <hr>
+                    <p><strong>Property:</strong> ${escapeHtml(property.title)}</p>
+                    <p><strong>Price:</strong> $${formatPrice(property.price)}</p>
+                    <p><strong>Location:</strong> ${escapeHtml(property.location)}</p>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            
+            // Close modal when clicking the X
+            const closeBtn = modal.querySelector('.close');
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            }
+        }
         async function searchProperties() {
             const query = document.getElementById('searchInput').value;
             try {
