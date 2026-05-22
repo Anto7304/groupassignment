@@ -229,8 +229,10 @@
 
         //formatting function to us
         function formatPrice(price) {
-            return new Intl.NumberFormat('en-US').format(price);
+            return new Intl.NumberFormat('en-KE').format(price);
         }
+
+        
 
         function escapeHtml(text) {
             const div = document.createElement('div');
