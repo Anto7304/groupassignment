@@ -141,7 +141,7 @@
                 </div>
                 <div class="property-details">
                     <h3>${escapeHtml(property.title)}</h3>
-                    <p class="price">$${formatPrice(property.price)}</p>
+                    <p class="price">Ksh${formatPrice(property.price)}</p>
                     <p class="location">📍 ${escapeHtml(property.location)}</p>
                     <div class="features">
                         <span>🛏️ ${property.bedrooms || 0} beds</span>
@@ -166,7 +166,7 @@
                     <p><strong>Phone:</strong> ${escapeHtml(property.seller_phone)}</p>
                     <hr>
                     <p><strong>Property:</strong> ${escapeHtml(property.title)}</p>
-                    <p><strong>Price:</strong> $${formatPrice(property.price)}</p>
+                    <p><strong>Price:</strong> Ksh${formatPrice(property.price)}</p>
                     <p><strong>Location:</strong> ${escapeHtml(property.location)}</p>
                 </div>
             `;

@@ -135,7 +135,7 @@
                     </div>
                     <div class="property-details">
                         <h3>${escapeHtml(property.title)}</h3>
-                        <p class="price">$${formatPrice(property.price)}</p>
+                        <p class="price">Ksh${formatPrice(property.price)}</p>
                         <p class="location">📍 ${escapeHtml(property.location)}</p>
                         <div class="features">
                             <span>🛏️ ${property.bedrooms} beds</span>
@@ -294,7 +294,7 @@
         
         // Helper functions
         function formatPrice(price) {
-            return new Intl.NumberFormat('en-US').format(price);
+            return new Intl.NumberFormat('en-KE').format(price);
         }
         
         function escapeHtml(text) {
